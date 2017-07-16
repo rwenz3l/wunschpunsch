@@ -1,4 +1,4 @@
-# requests
+# WunschPunsch
 **A Simple, yet effective list of things you want to have**
 
  - It's pretty much like a ToDo List.

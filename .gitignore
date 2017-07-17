@@ -1,2 +1,3 @@
 data/requests.db
 *.db
+.DS_Store

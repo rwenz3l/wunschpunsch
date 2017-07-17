@@ -87,7 +87,7 @@ $result = $db->query($query);
             <label for="editComments">Edit Comments:</label>
             <textarea class="form-control" rows="7" id="editComments"><?php echo($row['comments']); ?></textarea>
         </div>
-        <button class="btn btn-default btn-success pull-right" onclick="updateRequest(<?php echo($row['rowid']); ?>)">Save</button>
+        <button class="btn btn-default btn-success pull-right" onclick="editRequest(<?php echo($row['rowid']); ?>)">Save</button>
     </div>
     <table class="table table-hover table-condensed table-striped table-bordered">
         <?php

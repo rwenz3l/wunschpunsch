@@ -76,7 +76,7 @@ function fillRequest(id) {
         data: {
             'id': id
         },
-        url: "include/update.php",
+        url: "include/fillRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
             loadRequests();
@@ -84,7 +84,7 @@ function fillRequest(id) {
     });
 }
 
-function updateRequest(id) {
+function editRequest(id) {
     var name = document.getElementById("editName").value;
     var comments = document.getElementById("editComments").value;
     $.ajax({
@@ -94,7 +94,7 @@ function updateRequest(id) {
             'name' : name,
             'comments' : comments
         },
-        url: "include/update.php",
+        url: "include/editRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
             loadRequests();

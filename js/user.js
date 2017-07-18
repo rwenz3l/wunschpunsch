@@ -2,6 +2,20 @@
 /*global $, jQuery, alert*/
 var lastID = null; // Init last req. ID for Toggle
 
+// Prepare DOM
+$(document).ready(function () {
+    loadRequests();
+});
+
+$(function(){
+    // this will be called when the DOM is ready
+    $("#requestInput").keyup(function (event) {
+        console.log("KeyUp: " + event.which);
+    if (event.which === 13) {
+        addRequest();
+        }
+    });
+});
 
 function loadRequests(id) {
     console.log("called with id:" + id);
@@ -101,15 +115,3 @@ function editRequest(id) {
         }
     });
 }
-
-$(document).ready(function () {
-    loadRequests();
-});
-
-$('requestInput').keydown(function (event) {
-    console.log(event);
-    var keypressed = event.keyCode || event.which;
-    if (keypressed == 13) {
-        addRequest();
-    }
-});

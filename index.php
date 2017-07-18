@@ -30,7 +30,7 @@
                    style="width: 100%;"
                    placeholder="...">
         </div>
-      <button class="btn btn-success pull-right" id="add" onclick="addRequest()">Request</button>
+      <button class="btn btn-success pull-right" id="addRequest" onclick="addRequest()">Request</button>
     </div>
     <hr/>
     <div id="requestsTable"></div>

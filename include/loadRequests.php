@@ -13,7 +13,8 @@ $query = "SELECT rowid, * FROM requests ORDER BY rowid DESC ";
 $result = $db->query($query);
 
 ?>
-<div style="width: 500px; margin: 20px auto; border: 1px solid rgba(0, 0, 0, .1);">
+<div class="panel panel-default" style="width: 500px; margin: 20px auto; border: 1px solid rgba(0, 0, 0, .1);">
+    <div class="panel-heading"></div>
     <table class="table table-hover table-condensed table-striped table-bordered">
         <!-- Table Header -->
         <tr>
@@ -78,9 +79,11 @@ $result = $db->query($query);
                     <textarea class="form-control" style="max-width:100%;" rows="7" id="editComments"><?php echo($row['comments']); ?></textarea>
                 </div>
                 <button class="btn btn-default btn-success pull-right" onclick="editRequest(<?php echo($row['rowid']); ?>)">Save</button>
+                <br><br> <!-- Give me a little Space, god damnit! -->
             </div>
             <table class="table table-hover table-condensed table-striped table-bordered">
         <?php } // Close Insert Condition ?>
     <?php } // Close While Loop ?>
     </table>
+    <div class="panel-footer"></div>
 </div>

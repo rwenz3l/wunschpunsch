@@ -40,7 +40,7 @@ function addRequest() {
         data: {
             'request_data': data
         },
-        url: "include/insert.php",
+        url: "include/addRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
             loadRequests();
@@ -62,7 +62,7 @@ function deleteRequest(id) {
         data: {
             'id': id
         },
-        url: "include/delete.php",
+        url: "include/deleteRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
             loadRequests();

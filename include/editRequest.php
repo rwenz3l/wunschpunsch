@@ -11,15 +11,17 @@ if( isset($_POST['id']) ){
 	$name = $_POST['name'];
 	$comments = $_POST['comments'];
     
-    $name_db = $db->querySingle("SELECT name FROM requests WHERE rowid=$id");
-    $comments_db = $db->querySingle("SELECT comments FROM requests WHERE rowid=$id");
-    
+    // If name is unchanged, use the value from db
+    // Could also be changed in the js to send current name..
+    // Will probably do that in the future..
     if ($name == ""){
-        $name = $name_db;
+        $name = $db->querySingle("SELECT name FROM requests WHERE rowid=$id");
     }
     
+    // Same for Comments, if empty (why??)
+    // Should be improved here.
     if ($comments == ""){
-        $comments = $comments_db;
+        $comments = $db->querySingle("SELECT comments FROM requests WHERE rowid=$id");
     }
     
     $statement = $db->prepare('UPDATE requests SET name=:name, comments=:comments WHERE rowid=:id;');

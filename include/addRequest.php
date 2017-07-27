@@ -10,8 +10,9 @@ if( isset($_POST['request_data']) ){
 	$name = $_POST['request_data'];
 
 	// Makes query with post data
-    $statement = $db->prepare('INSERT INTO requests(name) VALUES (:name);');
+    $statement = $db->prepare('INSERT INTO requests(name, filled) VALUES (:name, :filled);');
     $statement->bindValue(':name', $name, SQLITE3_TEXT); // Bind Value
+    $statement->bindValue(':filled', 0, SQLITE3_INTEGER); // Bind Value
     
     // Executes the query
     $result = $statement->execute();

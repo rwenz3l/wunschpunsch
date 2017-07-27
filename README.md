@@ -15,3 +15,4 @@
 **ToDo**
 
  - Implement Switch for only Listing Open Requests.
+ - Show Loading Div when calling ajax (https://stackoverflow.com/a/68503/3286178)

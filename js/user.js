@@ -18,7 +18,7 @@ $(function(){
     });
 });
 
-function loadRequests(id=null, filter='all') {
+function loadRequests(id=null, filter='open') {
     console.log("called with id:" + id + " and filter: " + filter);
     if (id === lastID) {
         lastID = id = null; // Reset ID

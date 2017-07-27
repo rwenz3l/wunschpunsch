@@ -8,17 +8,17 @@ $(document).ready(function () {
 });
 
 $(function(){
-    // this will be called when the DOM is ready
+    /* this will be called when the DOM is ready */
     $("#requestInput").keyup(function (event) {
-        console.log("KeyUp: " + event.which);
-    if (event.which === 13) {
-        addRequest();
+        /* console.log("KeyUp: " + event.which); */
+        if (event.which === 13) {
+            addRequest();
         }
     });
 });
 
 function loadRequests(id) {
-    console.log("called with id:" + id);
+    /* console.log("called with id:" + id); */
     if (id === lastID) {
         lastID = id = null; // Reset ID
     } else {

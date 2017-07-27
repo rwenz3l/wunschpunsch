@@ -1,6 +1,7 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 var lastID = null; // Init last req. ID for Toggle
+var lastFilter = null; // Init last req. Filter for Toggle
 
 // Prepare DOM
 $(document).ready(function () {
@@ -17,17 +18,19 @@ $(function(){
     });
 });
 
-function loadRequests(id) {
-    /* console.log("called with id:" + id); */
+function loadRequests(id=null, filter='all') {
+    console.log("called with id:" + id + " and filter: " + filter);
     if (id === lastID) {
         lastID = id = null; // Reset ID
     } else {
         lastID = id;
     }
+    lastFilter = filter; // Always Remember applied Filter
     $.ajax({
         type: 'post',
         data: {
-            'id': id
+            'id': id,
+            'filter': filter
         },
         url: 'include/loadRequests.php',
         success: function (response) {
@@ -57,7 +60,8 @@ function addRequest() {
         url: "include/addRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
-            loadRequests();
+            // default to open when adding a request:
+            loadRequests(id=lastID, filter='open');
         }
     });
     // Element zurücksetzen
@@ -79,7 +83,7 @@ function deleteRequest(id) {
         url: "include/deleteRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
-            loadRequests();
+            loadRequests(id=lastID, filter=lastFilter);
         }
     });
 }
@@ -93,7 +97,7 @@ function fillRequest(id) {
         url: "include/fillRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
-            loadRequests();
+            loadRequests(id=lastID, filter=lastFilter);
         }
     });
 }
@@ -111,7 +115,7 @@ function editRequest(id) {
         url: "include/editRequest.php",
         success: function (response) {
             console.log("Server says: " + response);
-            loadRequests();
+            loadRequests(id=lastID, filter=lastFilter);
         }
     });
 }

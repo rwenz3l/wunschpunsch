@@ -3,17 +3,34 @@
 // Includes database connection
 include "db_connect.php";
 
-// Makes query with rowid
-$query = "SELECT rowid, * FROM requests ORDER BY rowid DESC ";
-// Only show unfilled:
-//$query = "SELECT rowid, * FROM requests WHERE filled IS 0 ORDER BY rowid DESC ";
+
+/* Create query with rowid while applying filters..
+ * Maybe has more filters in the future
+*/
+
+if( isset($_POST['filter']) ) {
+    switch ($_POST['filter']){
+        case 'all':
+            $query = "SELECT rowid, * FROM requests ORDER BY rowid DESC ";
+            break;
+        case 'open':
+            $query = "SELECT rowid, * FROM requests WHERE filled IS 0 ORDER BY rowid DESC";
+            break;
+        case 'filled':
+            $query = "SELECT rowid, * FROM requests WHERE filled IS 1 ORDER BY rowid DESC";
+            break;
+    }
+} else {
+    // since js has a default parameter for filter (=all) this is actually unnacessary.
+    $query = "SELECT rowid, * FROM requests ORDER BY rowid DESC ";
+}
 
 // Run the query and set query result in $result
 // Here $db comes from "db_connection.php"
 $result = $db->query($query);
 
 ?>
-<div class="panel panel-default" style="width: 500px; margin: 20px auto; border: 1px solid rgba(0, 0, 0, .1);">
+<div class="panel panel-default innerTable">
     <div class="panel-heading"></div>
     <table class="table table-hover table-condensed table-striped table-bordered">
         <!-- Table Header -->
@@ -55,7 +72,7 @@ $result = $db->query($query);
                 </a>
             <?php } ?>
             <!-- Mini Edit Button -->
-                <a class="btn btn-default btn-xs btn-warning" onclick="loadRequests( <?php echo($row['rowid']); ?> )">
+                <a class="btn btn-default btn-xs btn-warning" onclick="loadRequests( <?php echo("id=" . $row['rowid'] . ",filter=lastFilter" )?> )">
                     <span class="glyphicon glyphicon-edit"/>
                 </a>
             <!-- Mini Delete Button -->
@@ -78,7 +95,7 @@ $result = $db->query($query);
                     <label for="editComments">Comments:</label>
                     <textarea class="form-control" style="max-width:100%;" rows="7" id="editComments"><?php echo($row['comments']); ?></textarea>
                 </div>
-                <button class="btn btn-default btn-success pull-right" onclick="editRequest(<?php echo($row['rowid']); ?>)">Save</button>
+                <button class="btn btn-default btn-success pull-right" onclick="editRequest(<?php echo("id=" . $row['rowid'] . ",filter=lastFilter") ?>)">Save</button>
                 <br><br> <!-- Give me a little Space, god damnit! -->
             </div>
             <table class="table table-hover table-condensed table-striped table-bordered">

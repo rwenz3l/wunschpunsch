@@ -10,12 +10,19 @@ if( isset($_POST['request_data']) ){
 	$name = $_POST['request_data'];
 
 	// Makes query with post data
-	$query = "INSERT INTO requests (name) VALUES ('$name')";
+    $statement = $db->prepare('INSERT INTO requests(name) VALUES (:name);');
+    $statement->bindValue(':name', $name, SQLITE3_TEXT); // Bind Value
+    
+    // Executes the query
+    $result = $statement->execute();
+    
+    // Close Statement
+    $statement->close();
 	
 	// Executes the query
 	// If data inserted then set success message otherwise set error message
 	// Here $db comes from "db_connection.php"
-	if( $db->exec($query) ){
+	if( $result ){
 		$message = "Data is inserted successfully.";
 	}else{
 		$message = "Sorry, Data is not inserted.";

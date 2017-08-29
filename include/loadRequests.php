@@ -36,8 +36,7 @@ $result = $db->query($query);
         <!-- Table Header -->
         <tr>
             <td>Name</td>
-            <td style="text-align: center;"><span class="glyphicon glyphicon-ok"></td>
-        <td style="text-align: center;">Edit</td>
+            <td style="text-align: center; width:110px;">Edit</td>
     </tr>
     <!-- Iterate over Database Entries -->
     <?php
@@ -51,16 +50,8 @@ $result = $db->query($query);
     <?php } ?>
             <!-- Name of Request -->
             <td> <?php echo($row['name']); ?> </td>
-            <!-- Shows if Request is Filled -->
-            <td style="text-align: center;">
-            <?php if($row['filled'] == 1){ ?>
-                <span class="glyphicon glyphicon-ok"></span>
-            <?php } else { ?>
-                <span class="glyphicon glyphicon-remove"></span>
-            <?php } ?>
-            </td>
             <!-- Mini Buttons -->
-            <td style="text-align: center;">
+            <td style="text-align: center; width:110;">
             <!-- Mini Toggle Filled -->
             <?php if($row['filled'] == 0){ ?>
                 <a class="btn btn-default btn-xs btn-success" onclick="fillRequest( <?php echo($row['rowid']); ?> )">
